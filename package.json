@@ -1,0 +1,26 @@
+{
+  "name": "fun-with-passportjs",
+  "version": "1.0.0",
+  "description": "Exploring passportjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kehrlann/fun-with-passportjs.git"
+  },
+  "author": "git@garnier.wf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kehrlann/fun-with-passportjs/issues"
+  },
+  "homepage": "https://github.com/Kehrlann/fun-with-passportjs#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "passport-custom": "^1.1.1",
+    "passport-http-bearer": "^1.0.1",
+    "passport-local": "^1.0.0"
+  }
+}
