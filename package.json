@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Kehrlann/fun-with-passportjs#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "passport": "^0.4.1",
     "passport-custom": "^1.1.1",
     "passport-http-bearer": "^1.0.1",
