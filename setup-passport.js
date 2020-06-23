@@ -23,4 +23,19 @@ passport.use(
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((serialized, done) => done(null, serialized));
 
+// HTTP BEARER STRATEGY
+// For API auth
+const BearerStrategy = require('passport-http-bearer').Strategy;
+passport.use(
+  new BearerStrategy(
+    (token, done) => {
+      if (token === 'secret-token') {
+        done(null, { username: 'token-user' });
+      } else {
+        done(null, false);
+      }
+    }
+  )
+);
+
 module.exports = passport;

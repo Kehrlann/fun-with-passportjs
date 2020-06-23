@@ -1,11 +1,11 @@
+const PORT = 3000;
 const passport = require('./setup-passport');
 const app = require('express')();
 const requireAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    next();
-  } else {
-    res.status(401).send("Unauthorized").end();
-  }
+  // First, allow logged in user
+  if (req.isAuthenticated()) return next();
+  // If not logged in, try authenticating with Bearer and fail request if invalid auth
+  return passport.authenticate('bearer')(req, res, next);
 };
 
 // Setup passport dependencies + middleware
@@ -52,10 +52,10 @@ app.get('/', (req, res, next) => {
         </p>
         <p>
           If you are logged in, you can visit <a href="/protected">this page</a>.
-          You can also use cURL:
+          You can also use cURL (changing the token will return 401 Unauthorized):
         </p>
         <p>
-          curl localhost:3000/protected -H "Authorization: Bearer secret-token"
+          curl localhost:${PORT}/protected -v -H "Authorization: Bearer secret-token"
         </p>
         ${loginLogout}
       </body>
@@ -81,9 +81,8 @@ app.post('/logout', (req, res) => {
 });
 
 
-const port = 3000;
-console.log("server starting on port : ", port);
+console.log("server starting on port :", PORT);
 console.log("");
-console.log(`   http://localhost:${port}`);
+console.log(`   http://localhost:${PORT}`);
 console.log("");
-app.listen(port);
+app.listen(PORT);
