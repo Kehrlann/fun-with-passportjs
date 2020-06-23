@@ -8,9 +8,9 @@ passport.use(
     (username, password, done) => {
       if (username === 'admin' && password === 'password') {
         done(null, { username });
-      } else if (!!username) {
+      } else if (!username) {
         done(new Error("Username is required."));
-      } else if (!!password) {
+      } else if (!password) {
         done(new Error("Password is required."));
       } else {
         done(null, false);
@@ -21,6 +21,6 @@ passport.use(
 
 // Fully serialize the user in the session
 passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((serialized, done) => done(null, user));
+passport.deserializeUser((serialized, done) => done(null, serialized));
 
 module.exports = passport;
